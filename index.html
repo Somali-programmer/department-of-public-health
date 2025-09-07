@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Substance Use Research | Horn International College</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --color-primary: #8B0000; /* Dark Red */
+            --color-secondary: #000000; /* Black */
+            --color-accent: #FFD700;   /* Gold */
+            --color-background: #0A0A0A; /* Dark Background */
+            --color-text: #FFFFFF;     /* White */
+            --color-text-secondary: #CCCCCC; /* Light Gray */
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            color: var(--color-text);
+            position: relative;
+            padding-bottom: 15px;
+            font-weight: 700;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            border-radius: 3px;
+        }
+
+        .highlight {
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--color-primary), #B22222);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+            margin: 10px;
+        }
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.4);
+        }
+        
+        .btn-download {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+        }
+        .btn-download:hover {
+            box-shadow: 0 8px 20px rgba(46, 125, 50, 0.4);
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            color: var(--color-text);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .nav-logo span {
+            color: var(--color-primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover {
+            color: var(--color-accent);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-text);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 100vh;
+            color: var(--color-text);
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        .hero-title span {
+            color: var(--color-accent);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        .hero-description {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 0;
+            background: linear-gradient(to bottom, var(--color-background), #111111);
+        }
+        .about-content {
+            margin-bottom: 4rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 4rem;
+        }
+        .about-content h3 {
+            color: var(--color-accent);
+            margin: 2rem 0 1rem;
+            font-size: 1.8rem;
+        }
+        .objectives {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+        .objective-card {
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            border-left: 5px solid var(--color-primary);
+        }
+        .objective-card:hover {
+            transform: translateY(-10px);
+        }
+        .objective-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .objective-card h3 i {
+            margin-right: 10px;
+            color: var(--color-accent);
+        }
+        .objective-card ul {
+            list-style-type: none;
+        }
+        .objective-card li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .objective-card li::before {
+            content: '•';
+            color: var(--color-accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Methodology Section */
+        .methodology {
+            padding: 8rem 0;
+            background: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover fixed;
+            position: relative;
+        }
+        .methodology::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.9);
+        }
+        .methodology .container {
+            position: relative;
+            z-index: 1;
+        }
+        .method-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .method-card {
+            background: rgba(30, 30, 30, 0.7);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .method-card:hover {
+            transform: scale(1.05);
+            border-color: var(--color-accent);
+        }
+        .method-card h3 {
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        .method-card i {
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 8rem 0;
+            background: linear-gradient(to bottom, #111111, var(--color-background));
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        .team-member {
+            text-align: center;
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        .member-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background-color: #333;
+            border: 3px solid var(--color-accent);
+        }
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .member-img i {
+            font-size: 4rem;
+            color: var(--color-text);
+        }
+        .team-member h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-text);
+        }
+        .team-member p {
+            color: var(--color-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        .team-member .role {
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+        .advisor {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .advisor-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+            color: var(--color-text);
+            position: relative;
+            overflow: hidden;
+        }
+        .advisor-img::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.1&auto=format&fit=crop&w=500&q=80') no-repeat center center/cover;
+            opacity: 0.2;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 0;
+            background: linear-gradient(to bottom, var(--color-background), #000000);
+            text-align: center;
+        }
+        #contactForm {
+            max-width: 600px;
+            margin: 3rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        #contactForm input,
+        #contactForm textarea {
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(30, 30, 30, 0.8);
+            color: var(--color-text);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: border-color 0.3s ease;
+        }
+        #contactForm input:focus,
+        #contactForm textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+        #contactForm button {
+            background: linear-gradient(135deg, var(--color-primary), #B22222);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        #contactForm button:hover {
+            background: linear-gradient(135deg, #B22222, var(--color-primary));
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.4);
+        }
+        #formFeedback {
+            margin-top: 1.5rem;
+            font-weight: bold;
+            color: var(--color-accent);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        .footer p {
+            margin-bottom: 1rem;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .social-links a {
+            color: var(--color-text);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 968px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background-color: rgba(0, 0, 0, 0.95);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                padding: 2rem 0;
+                gap: 0;
+                backdrop-filter: blur(10px);
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .nav-item {
+                margin: 1.5rem 0;
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .objectives, .method-cards, .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">Department pub<span>lic health   </span></a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#methodology" class="nav-link">Methodology</a></li>
+                <li class="nav-item"><a href="#team" class="nav-link">Team</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <h1 class="hero-title">ASSESSMENT PREVALENCE OF SUBSTANCE USE <span>2025</span></h1>
+            <p class="hero-description">A comprehensive research project by the Department of Public Health, Horn International College, Jijiga, Ethiopia.</p>
+            <a href="#about" class="btn">Explore the Study <i class="fas fa-arrow-down"></i></a>
+            <a href="research proposal 2025.docx" class="btn btn-download" download><i class="fas fa-download"></i> Download Full Proposal</a>
+        </div>
+    </section>
+
+    <!-- About the Study Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About The Study</h2>
+            <div class="about-content animate">
+                <p>This research aims to assess the <span class="highlight">prevalence of substance use</span> and identify key associated factors among students at Horn International College. Substance use is a significant global public health concern, particularly among youth, leading to adverse health, academic, and socio-economic outcomes.</p>
+                <br>
+                <h3>Research Significance</h3>
+                <p>The findings of this study will provide crucial data for healthcare practitioners and policymakers to design targeted interventions, prevention strategies, and support systems within the academic environment. It will also contribute to the body of knowledge for further research on this topic.</p>
+            </div>
+            <div class="objectives">
+                <div class="objective-card animate">
+                    <h3><i class="fas fa-bullseye"></i> General Objective</h3>
+                    <p>To assess the prevalence of substance use and associated factors among Horn College students in Eastern Ethiopia, 2025.</p>
+                </div>
+                <div class="objective-card animate">
+                    <h3><i class="fas fa-list-check"></i> Specific Objectives</h3>
+                    <ul>
+                        <li>To determine the prevalence of substance use among Horn College students</li>
+                        <li>To identify factors associated to substance use among Horn College students</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="methodology">
+        <div class="container">
+            <h2 class="section-title">Research Methodology</h2>
+            <div class="method-cards">
+                <div class="method-card animate">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>Study Design</h3>
+                    <p>A quantitative <span class="highlight">cross-sectional study</span> will be employed to gather comprehensive data.</p>
+                </div>
+                <div class="method-card animate">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Study Area & Period</h3>
+                    <p>Horn International College, Jigjiga, Somali Regional State. Data collection will take place in September 2025.</p>
+                </div>
+                <div class="method-card animate">
+                    <i class="fas fa-users"></i>
+                    <h3>Sample Size</h3>
+                    <p>A total of <span class="highlight">403 students</span> will be selected using a stratified multi-stage sampling technique.</p>
+                </div>
+                <div class="method-card animate">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Data Collection</h3>
+                    <p>Data will be collected through self-administered structured questionnaires translated to the local language.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="container">
+            <h2 class="section-title">Research Team</h2>
+            <div class="team-grid">
+                <div class="team-member animate">
+                    <div class="member-img">
+                        <img src="mawliit.jpg" alt="Ahmed Abdullahi Abdi">
+                    </div>
+                    <h3>Mamwliit Mahamed abdi</h3>
+                    <p class="role">Developer & Researcher</p>
+                    <p>ID: HIUCR/0977/14</p>
+                </div>
+                <div class="team-member animate">
+                    <div class="member-img">
+                             <img src="nasir.jpg" alt="Mowliid Mohmed Abdi">
+                    </div>
+                    <h3>Ahmed Abdullahi Abdi</h3>
+                    <p class="role">Researcher</p>
+                    <p>ID: HIUCR/0000/14</p>
+                </div>
+                <div class="team-member animate">
+                    <div class="member-img">
+                        <img src="non.jpg" alt="Muhumed Mohamed Abdi">
+                    </div>
+                    <h3>Muhumed Mohamed Abdi</h3>
+                    <p class="role">Researcher</p>
+                    <p>ID: HIUCR/0176/14</p>
+                </div>
+                <div class="team-member animate">
+                    <div class="member-img">
+                        <img src="non.jpg" alt="Daud Abdireshid Ahmed">
+                    </div>
+                    <h3>Daud Abdireshid Ahmed</h3>
+                    <p class="role">Researcher</p>
+                    <p>ID: HIUCR/0023/14</p>
+                </div>
+                <div class="team-member animate">
+                    <div class="member-img">
+                        <img src="non.jpg" alt="Mohamed Aden Kahin">
+                    </div>
+                    <h3>Mohamed Aden Kahin</h3>
+                    <p class="role">Researcher</p>
+                    <p>ID: HIUCR/0177/14</p>
+                </div>
+                <div class="team-member animate">
+                    <div class="member-img">
+                        <img src="non.jpg" alt="Asma Aden Ibrahim">
+                    </div>
+                    <h3>Asma Aden Ibrahim</h3>
+                    <p class="role">Researcher</p>
+                    <p>ID: HIUCR/0980/14</p>
+                </div>
+            </div>
+            <div class="advisor animate">
+                <div class="advisor-img">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Research Advisor</h3>
+                <p class="role">Mr. Fikru Wendu (MPH)</p>
+                <p>Department of Public Health</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <p>Interested in learning more about our research? Get in touch with our team.</p>
+            <form id="contactForm">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message <i class="fas fa-paper-plane"></i></button>
+            </form>
+            <p id="formFeedback"></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 | Somali-programmer👩‍💻 | Department of Public Health.| All rights reserved.</p>
+            <p>Jigjiga, Somali Regional State, Ethiopia</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/newboymawliid.mohamed?mibextid=wwXIfr&mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://wa.me/252673432491?text=asc%20somali%20programmer"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/somali.programmer?igsh=MWpucGVxc3Q5ZmIxOA%3D%3D&utm_source=qr"><i class="fab fa-instagram"></i></a>
+                <a href="https://somali-programmer.github.io/somali-programmer../"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        })
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }))
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Simple Form Validation and Feedback
+        const contactForm = document.getElementById('contactForm');
+        const formFeedback = document.getElementById('formFeedback');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (name && email && message) {
+                formFeedback.textContent = "Thank you for your message! We'll get back to you soon.";
+                formFeedback.style.color = "#4CAF50";
+                contactForm.reset();
+                setTimeout(() => {
+                    formFeedback.textContent = "";
+                }, 5000);
+            } else {
+                formFeedback.textContent = "Please fill in all fields.";
+                formFeedback.style.color = "var(--color-primary)";
+            }
+        });
+
+        // Add some interactive effects to team members
+        document.querySelectorAll('.team-member').forEach(member => {
+            member.addEventListener('mouseover', () => {
+                if (member.querySelector('img')) {
+                    member.querySelector('img').style.transform = 'scale(1.1)';
+                }
+            });
+            member.addEventListener('mouseout', () => {
+                if (member.querySelector('img')) {
+                    member.querySelector('img').style.transform = 'scale(1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
